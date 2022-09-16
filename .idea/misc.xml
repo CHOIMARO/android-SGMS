@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable-v24/bg_round_corner_8_green.xml" value="0.2985" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.299" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/bg_round_corner_black.xml" value="0.299" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/bg_round_corner_white.xml" value="0.193" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/bg_splash.xml" value="0.192" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.299" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_baseline_format_list_bulleted.xml" value="0.193" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.2985" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_baseline_remove_circle_24.xml" value="0.193" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_baseline_settings.xml" value="0.299" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_baseline_warning_24.xml" value="0.299" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_home.xml" value="0.2985" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.299" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_tngen_logo_background.xml" value="0.183" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/intro_splash.xml" value="0.2105" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/splash_background.xml" value="0.193" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/activity_base_splash.xml" value="0.25" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/dialog_calibration_setting.xml" value="0.22" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/dialog_loading.xml" value="0.67" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/fragment_history.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/intro_splash.xml" value="0.3619791666666667" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/viewholder_emergency_call.xml" value="0.3619791666666667" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/viewholder_history_list.xml" value="0.33" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/viewholder_home_sensor_list.xml" value="0.33" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/viewholder_sensor_registration.xml" value="0.33" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/viewholder_settings_emergency_call.xml" value="0.14739583333333334" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3619791666666667" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.183" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/mipmap-anydpi-v26/ic_tngen_logo.xml" value="0.183" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

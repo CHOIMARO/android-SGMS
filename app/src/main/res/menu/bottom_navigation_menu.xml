@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/menu_history"
+        android:icon="@drawable/ic_baseline_format_list_bulleted"
+        android:title="@string/history" />
+
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/menu_settings"
+        android:icon="@drawable/ic_baseline_settings"
+        android:title="@string/settings"/>
+
+</menu>

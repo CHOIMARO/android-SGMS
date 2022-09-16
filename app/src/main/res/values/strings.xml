@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">SGMS_Android</string>
+    <string name="settings">설정</string>
+    <string name="home">홈</string>
+    <string name="history">이력</string>
+    <string name="gas_sensor_device_registration">가스 센서 기기 등록</string>
+    <string name="setting_baseline">가스 기준치 설정</string>
+    <string name="gas_baseline_setting">가스 알람 기준치 설정</string>
+    <string name="gas_alarm_setting">가스 알람 설정</string>
+    <string name="emergency_call_setting">비상 연락처 설정</string>
+    <string name="sensor_registration_id">등록 센서 ID :</string>
+    <string name="sensor_registration_location">등록 센서 위치 :</string>
+    <string name="baseline_alarm_setting">기준치 이탈 시 진동 및 소리 알람 설정</string>
+    <string name="messageSend">기준치 이탈 시 비상 연락처에 등록된 번호로 메세지 전송</string>
+    <string name="uesr_name">사용자 이름</string>
+    <string name="phone_num">전화번호</string>
+</resources>
