@@ -6,3 +6,4 @@ Android 환경에서 Seriral통신으로 실시간 가스 센서 데이터를 �
 ### Coroutines (비동기 방식의 기능 구현)
 ### DI : Dagger-Hilt
 ### 통신 방식 : SERIAL 통신
+### 통신 기기 : LoRa 통신 모듈
