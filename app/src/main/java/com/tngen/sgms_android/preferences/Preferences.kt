@@ -18,5 +18,7 @@ class Preferences {
             toast!!.show()
         }
         var baselineEntity : BaselineEntity? = null
+
+        var isMasterLevel = false
     }
 }

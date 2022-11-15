@@ -12,6 +12,7 @@ import com.hoho.android.usbserial.driver.UsbSerialProber
 import com.hoho.android.usbserial.util.SerialInputOutputManager
 import com.tngen.sgms_android.BuildConfig
 import com.tngen.sgms_android.SgmsApplication
+import com.tngen.sgms_android.utility.serial.CRC8
 import com.tngen.sgms_android.utility.serial.SerialUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -19,6 +20,7 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
+import java.lang.StringBuilder
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -31,12 +33,13 @@ class USBSerialService() : SerialInputOutputManager.Listener{
 //    private val INTENT_ACTION_GRANT_USB = BuildConfig.APPLICATION_ID + ".USB_PERMISSION"
     private val INTENT_ACTION_GRANT_USB = BuildConfig.APPLICATION_ID + ".GRANT_USB"
     var port: UsbSerialPort? = null
-    fun connect() {
+
+    fun connect() : Boolean {
         // Find all available drivers from attached devices.
         val manager = SgmsApplication.appContext?.getSystemService(USB_SERVICE) as UsbManager?
         val availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager)
         if (availableDrivers.isEmpty()) {
-            return
+            return false
         }
         val usbConnection = requestConnection(manager!!, availableDrivers[0])
         if(usbConnection == null) {
@@ -47,7 +50,9 @@ class USBSerialService() : SerialInputOutputManager.Listener{
                     connect()
                 }
             }
-            return
+            return true
+        }else{
+            return true
         }
     }
     fun requestConnection(manager:UsbManager ,availableDrivers : UsbSerialDriver) : UsbDeviceConnection? {
@@ -69,6 +74,7 @@ class USBSerialService() : SerialInputOutputManager.Listener{
             if (manager.deviceList.size > 0) {
                 manager.requestPermission(driver.device, usbPermissionIntent)
             }
+
         } else {
             port = driver.ports[0]
             port!!.open(connection)
@@ -78,9 +84,25 @@ class USBSerialService() : SerialInputOutputManager.Listener{
             usbIoManager.start()
 
             Log.d("USBSerialService", "Connect Serial")
-            port!!.write("Hello".toByteArray(), 2000)
+            checkModuleLevel()
         }
         return connection
+    }
+    fun checkModuleLevel() {
+        val crc = CRC8()
+        crc.reset()
+        var byteArr = byteArrayOf()
+
+        byteArr = byteArr +
+                '<'.toByte() +
+                "02".toInt(16).toByte() +
+                "FF".toInt(16).toByte() +
+                "4D".toInt(16).toByte() +
+                '>'.toByte()
+
+        crc.update(byteArr)
+        byteArr += crc.value.toByte()
+        port?.write(byteArr, 2000)
     }
 
     fun send(byteArray: ByteArray) {
@@ -94,7 +116,6 @@ class USBSerialService() : SerialInputOutputManager.Listener{
             SerialUtil.addDataString(it)
         }
         if(SerialUtil.isSerialReceived()) {
-//            notifyObserversNewData(SerialUtil.dataByte)
             GlobalScope.launch(Dispatchers.IO) {
                 _sharedFlow.emit(SerialUtil.dataByte)
                 SerialUtil.clearDataString()

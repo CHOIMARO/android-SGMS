@@ -14,16 +14,17 @@
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_baseline_remove_circle_24.xml" value="0.193" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_baseline_settings.xml" value="0.299" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_baseline_warning_24.xml" value="0.299" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_connect_background.xml" value="0.2625" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_home.xml" value="0.2985" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.299" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/ic_tngen_logo_background.xml" value="0.183" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/intro_splash.xml" value="0.2105" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/drawable/splash_background.xml" value="0.193" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/activity_base_splash.xml" value="0.25" />
-        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/dialog_calibration_setting.xml" value="0.22" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/dialog_loading.xml" value="0.67" />
-        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/fragment_history.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/fragment_history.xml" value="0.25" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/intro_splash.xml" value="0.3619791666666667" />
@@ -33,8 +34,12 @@
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/viewholder_sensor_registration.xml" value="0.33" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/layout/viewholder_settings_emergency_call.xml" value="0.14739583333333334" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3619791666666667" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/mipmap-anydpi-v26/ic_connect.xml" value="0.2625" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.183" />
         <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/mipmap-anydpi-v26/ic_tngen_logo.xml" value="0.183" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/mipmap-anydpi-v26/ic_tngen_logo_round.xml" value="0.2625" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/mipmap-anydpi-v26/ic_tngen_musa.xml" value="0.2625" />
+        <entry key="..\:/Users/qkqnf/Documents/sgms_android/app/src/main/res/mipmap-anydpi-v26/ic_tngen_musa_round.xml" value="0.2625" />
       </map>
     </option>
   </component>

@@ -10,6 +10,8 @@ import com.tngen.sgms_android.presentation.base.BaseViewModel
 import com.tngen.sgms_android.presentation.home.HomeState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,13 +19,12 @@ import javax.inject.Inject
 class HistoryViewModel @Inject constructor(
     private val getHistoryListUseCase: GetHistoryListUseCase
 ) : BaseViewModel() {
-
-    private var _historyStateLiveData = MutableLiveData<HistoryState>(HistoryState.UnInitialized)
-    val historyStateLiveData: LiveData<HistoryState> = _historyStateLiveData
+    private var _historySharedFlow = MutableSharedFlow<HistoryState>()
+    val historySharedFlow : SharedFlow<HistoryState> = _historySharedFlow
 
     override fun fetchData(): Job = viewModelScope.launch {
         val historyList = getHistoryListUseCase()
-        _historyStateLiveData.postValue(HistoryState.GetHistoryListSuccess(historyList.map {
+        _historySharedFlow.emit(HistoryState.GetHistoryListSuccess(historyList.map {
             HistoryModel(
                 createdAt = it.createdAt,
                 sensorId = it.sensorId,
@@ -35,6 +36,5 @@ class HistoryViewModel @Inject constructor(
                 id = it.id
             )
         }))
-
     }
 }

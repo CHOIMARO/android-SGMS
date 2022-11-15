@@ -14,6 +14,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,14 +25,15 @@ class HomeViewModel @Inject constructor(
     private val sendSerialUseCase: SendSerialUseCase,
 ) : BaseViewModel() {
 
-    private var _homeStateLiveData = MutableLiveData<HomeState>(HomeState.UnInitialized)
-    val homeStateLiveData: LiveData<HomeState> = _homeStateLiveData
     var sensorList : List<SensorEntity> = listOf()
+
+    val _homeSharedFlow = MutableSharedFlow<HomeState>()
+    var homeSharedFlow = _homeSharedFlow.asSharedFlow()
 
     override fun fetchData(): Job = viewModelScope.launch {
 
         sensorList = getSensorListUseCase()
-        _homeStateLiveData.postValue(HomeState.GetSensorListSuccess(
+        _homeSharedFlow.emit(HomeState.GetSensorListSuccess(
             sensorList.map {
                 HomeSensorModel(
                     id = it.id,
@@ -39,7 +42,6 @@ class HomeViewModel @Inject constructor(
                 )
             }
         ))
-
     }
 
     fun checkDataSetChange() {

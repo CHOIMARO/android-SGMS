@@ -35,12 +35,12 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>: Fragment() {
         }
         initViews()
         fetchJob = viewModel.fetchData()
-        observeData()
+//        observeData()
     }
 
     open fun initViews() = Unit
 
-    abstract fun observeData()
+//    abstract fun observeData()
 
     override fun onDestroyView() {
         super.onDestroyView()

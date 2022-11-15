@@ -2,6 +2,7 @@ package com.tngen.sgms_android.domain.serial
 
 import com.tngen.sgms_android.data.network.serial.USBSerialService
 import com.tngen.sgms_android.domain.UseCase
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
 

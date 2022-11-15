@@ -14,6 +14,9 @@ class SendSerialUseCase
     operator fun invoke(command : Command ,cmd: Char, sensorId: String, o2Value: String, coValue: String, lelValue: String, co2Value: String, h2sValue: String) {
         usbSerialService.send(processingMessage(command, cmd, sensorId,o2Value,coValue,lelValue,co2Value,h2sValue))
     }
+    fun connectCheckMessage(){
+        usbSerialService.checkModuleLevel();
+    }
 
     private fun processingMessage(command: Command, cmd: Char, sensorId: String, o2Value: String, coValue: String, lelValue: String, co2Value: String, h2sValue: String) : ByteArray {
         when(command) {
@@ -28,8 +31,6 @@ class SendSerialUseCase
                 val co = String.format("%04X",(coValue.toDouble().toInt()))
                 val co2 = String.format("%04X",co2Value.toDouble().toInt())
                 val h2s = String.format("%04X",h2sValue.toDouble().toInt())
-
-
 
                 result = result +
                         '<'.toByte() +

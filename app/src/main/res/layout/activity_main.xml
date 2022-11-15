@@ -6,6 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".presentation.main.MainActivity">
 
+    <Button
+        android:id="@+id/connectionCheckButton"
+        android:text="연결 확인"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_width="100dp" />
+
+    <ImageView
+        android:id="@+id/disconnectedIconImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/ic_connect_foreground"
+        app:tint="@color/red"/>
+
+    <ImageView
+        android:id="@+id/connectedIconImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/ic_connected_foreground"
+        android:visibility="invisible"
+        app:tint="@color/green"/>
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainer"
         android:layout_width="0dp"

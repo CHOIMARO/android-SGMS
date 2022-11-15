@@ -2,10 +2,15 @@ package com.tngen.sgms_android.presentation.home
 
 import android.app.PendingIntent
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.tngen.sgms_android.BuildConfig
 import com.tngen.sgms_android.SgmsApplication
 import com.tngen.sgms_android.data.entity.serial.SerialEntity
@@ -45,13 +50,23 @@ class HomeFragment(
 //        )
 //    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launch {
+//            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.homeSharedFlow.collect { homeState ->
+                    handleEvent(homeState)
+                }
+//            }
+        }
+    }
     override fun initViews()= with(binding) {
 //        recyclerView.adapter = homeSensorListAdapter
         super.initViews()
     }
 
-    override fun observeData() = viewModel.homeStateLiveData.observe(viewLifecycleOwner) {
-        when (it) {
+    private fun handleEvent(homeState: HomeState) {
+        when (homeState) {
             is HomeState.UnInitialized -> {
                 initViews()
             }
@@ -59,7 +74,7 @@ class HomeFragment(
                 handleLoadingState()
             }
             is HomeState.GetSensorListSuccess -> {
-                handleSensorListSuccessState(it)
+                handleSensorListSuccessState(homeState)
             }
             is HomeState.Error -> {
                 handleErrorState()
@@ -100,6 +115,13 @@ class HomeFragment(
             homeSensorListAdapter?.receivedSerialData(serialEntity)
         }
     }
+
+    fun activatingFeatures() = with(binding){
+        CoroutineScope(Dispatchers.Main).launch {
+            homeSensorListAdapter?.activatingFeatures()
+        }
+    }
+
     fun closeLoadingDialog() {
         CoroutineScope(Dispatchers.Main).launch {
             loadingDialog.dismiss()

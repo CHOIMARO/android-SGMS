@@ -36,7 +36,8 @@ class HomeSensorListAdapter(
     private val items: List<HomeSensorModel>,
     private val loadingDialog: LoadingDialog,
 ) : BaseAdapter() {
-    private var contextView: View? = null
+//    private var contextView: View? = null
+    private var viewArray = arrayListOf<View?>()
 
     private val _sharedFlowScroll = MutableSharedFlow<Int>(
         replay = 0, extraBufferCapacity = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST
@@ -60,7 +61,8 @@ class HomeSensorListAdapter(
     override fun getView(position: Int, view: View?, parent: ViewGroup?): View? {
         var convertView = view
         if (convertView == null) convertView = LayoutInflater.from(parent?.context).inflate(R.layout.viewholder_home_sensor_list, parent, false)
-        this.contextView = convertView
+//        this.contextView = convertView
+        viewArray.add(convertView)
 
         val item: HomeSensorModel = items[position]
         val sensorIdTextView = convertView!!.findViewById<TextView>(R.id.sensorIdTextView)
@@ -335,5 +337,12 @@ class HomeSensorListAdapter(
         }
 
         notifyDataSetChanged()
+    }
+    fun activatingFeatures() {
+        if(Preferences.isMasterLevel) {
+            viewArray.forEach {
+                it?.findViewById<Button>(R.id.calibrationSettingButton)?.isEnabled = true
+            }
+        }
     }
 }

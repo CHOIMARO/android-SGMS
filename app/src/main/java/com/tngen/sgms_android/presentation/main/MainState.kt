@@ -10,6 +10,8 @@ sealed class MainState {
 
     object Loading: MainState()
 
+    object ConnectSerialSuccess: MainState()
+
     data class ReceivedSerialDataSuccess(
         val data: SerialEntity
     ): MainState()
@@ -25,6 +27,8 @@ sealed class MainState {
     data class GetSensorListSuccess(
         val data: List<SensorEntity>
     ): MainState()
+
+    object ReceivedCheckMasterLevel : MainState()
 
     data class InsertHistoryItemSuccess(
         val data: Unit

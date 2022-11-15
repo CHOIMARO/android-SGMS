@@ -32,6 +32,5 @@ class ReceivedSerialUseCase
 
     private suspend fun receivedMessage(dataByte: ByteArray) {
         _sharedFlow.emit(dataByte)
-        Log.d("ReceivedSerialUseCase", "메세지 수신중~~")
     }
 }

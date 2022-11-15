@@ -1,8 +1,11 @@
 package com.tngen.sgms_android.presentation.history
 
+import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import com.tngen.sgms_android.data.entity.serial.SerialEntity
@@ -19,6 +22,7 @@ import com.tngen.sgms_android.widget.adapter.ModelRecyclerAdapter
 import com.tngen.sgms_android.widget.adapter.listener.history.HistoryItemClickListener
 import com.tngen.sgms_android.widget.adapter.listener.settings.EmergencyCallItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HistoryFragment(
@@ -42,8 +46,21 @@ class HistoryFragment(
             })
     }
 
-    override fun observeData() = viewModel.historyStateLiveData.observe(viewLifecycleOwner) {
-        when (it) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        lifecycleScope.launch {
+//            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewModel.historySharedFlow.collect { historyState ->
+                handleEvent(historyState)
+            }
+//            }
+        }
+
+    }
+
+    fun handleEvent(historyState: HistoryState) {
+        when (historyState) {
             is HistoryState.UnInitialized -> {
                 initViews()
             }
@@ -51,13 +68,14 @@ class HistoryFragment(
                 handleLoadingState()
             }
             is HistoryState.GetHistoryListSuccess -> {
-                handleSensorListSuccessState(it)
+                handleSensorListSuccessState(historyState)
             }
 
             is HistoryState.Error -> {
                 handleErrorState()
             }
         }
+
     }
 
     override fun initViews() = with(binding){
@@ -83,7 +101,7 @@ class HistoryFragment(
     }
 
     private fun handleErrorState() {
-        TODO("Not yet implemented")
+
     }
 
     companion object {

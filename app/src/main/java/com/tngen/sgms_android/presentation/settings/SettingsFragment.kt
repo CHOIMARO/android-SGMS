@@ -3,6 +3,7 @@ package com.tngen.sgms_android.presentation.settings
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,6 +13,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ScrollView
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.tngen.sgms_android.SgmsApplication
 import com.tngen.sgms_android.data.entity.settings.BaselineEntity
 import com.tngen.sgms_android.databinding.FragmentSettingsBinding
@@ -75,8 +77,19 @@ class SettingsFragment(
             })
     }
 
-    override fun observeData() = viewModel.sensorListStateLiveData.observe(viewLifecycleOwner) {
-        when (it) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launch {
+//            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewModel.settingSharedFlow.collect { settingState ->
+                handleEvent(settingState)
+            }
+//            }
+        }
+    }
+
+    private fun handleEvent(settingState: SettingsState) {
+        when (settingState) {
             is SettingsState.UnInitialized -> {
                 initViews()
             }
@@ -84,13 +97,13 @@ class SettingsFragment(
                 handleLoadingState()
             }
             is SettingsState.GetSensorSuccess -> {
-                handleRegistSensorSuccessState(it)
+                handleRegistSensorSuccessState(settingState)
             }
             is SettingsState.GetBaselineSuccess -> {
-                handleGetBaselineSuccessState(it)
+                handleGetBaselineSuccessState(settingState)
             }
             is SettingsState.GetEmergencyCallSuccess -> {
-                handleGetEmergencyCallSuccessState(it)
+                handleGetEmergencyCallSuccessState(settingState)
             }
             is SettingsState.Error -> {
                 handleErrorState()
@@ -319,16 +332,11 @@ class SettingsFragment(
                 co2Value.text.toString(),
                 h2sValue.text.toString()
             )
-
-            Preferences.baselineEntity = BaselineEntity(
-                id = 0,
-                o2 = o2Value.text.toString().toDouble(),
-                lel = lelValue.text.toString().toDouble(),
-                co = coValue.text.toString().toLong(),
-                co2 = co2Value.text.toString().toLong(),
-                h2s = h2sValue.text.toString().toLong()
-            )
-            loadingDialog.show()
+            if(Preferences.isMasterLevel) {
+                loadingDialog.show()
+            }else{
+                Preferences.showToast(context, "기준치 알람 설정이 완료되었습니다.")
+            }
         }
     }
 
@@ -347,7 +355,6 @@ class SettingsFragment(
                 sensorRegistrationArrowImageButton.animate().rotation(180f).duration = 300
 
                 sensorRegistrationExpandableLayout.setOnExpansionUpdateListener { _, state ->
-                    Log.d("ddddd", "${sensorRegistrationExpandableLayout.height}")
                     if(state == 2) {
 //                        nestedScrollView.smoothScrollTo(0, sensorRegistrationExpandableLayout.height)
                         nestedScrollView.fullScroll(sensorRegistrationExpandableLayout.height)
@@ -449,6 +456,7 @@ class SettingsFragment(
             }
         }
     }
+
     fun closeLoadingDialog() {
         CoroutineScope(Dispatchers.Main).launch {
             loadingDialog.dismiss()
